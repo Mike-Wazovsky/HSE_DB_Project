@@ -27,11 +27,11 @@
 | PK           | disciple_id    | Киберспортивная дисцплина | INTEGER  | PRIMARY KEY    |
 
 
-| **Disciple X Sport_org** |                 |                           |          |                |
-|--------------------------|-----------------|---------------------------|----------|----------------|
-| **PK/FK**                | **Name**        | **Description**           | **Type** | **Constraint** |
-| PK FK                    | disciple_id     | Киберспортивная дисцплина | INTEGER  | PRIMARY KEY    |
-| PK FK                    | sport_org_id    | Спортивная организация    | INTEGER  | PRIMARY KEY    |
+| **Disciple X Sport_org** |                 |                           |          |                  |
+|--------------------------|-----------------|---------------------------|----------|------------------|
+| **PK/FK**                | **Name**        | **Description**           | **Type** | **Constraint**   |
+| PK FK                    | disciple_id     | Киберспортивная дисцплина | INTEGER  | FK ref Disciple  |
+| PK FK                    | sport_org_id    | Спортивная организация    | INTEGER  | FK ref Sport_org |
 
 
 | **Sport_org** |                |                           |          |                |
@@ -40,41 +40,52 @@
 | PK            | sport_org_id   | Спортивная организация    | INTEGER  | PRIMARY KEY    |
 
 
-| **Tournament** |                |                           |          |                |
-|----------------|----------------|---------------------------|----------|----------------|
-| **PK/FK**      | **Name**       | **Description**           | **Type** | **Constraint** |
-| PK             | tourn_id       | Турнир                    | INTEGER  | PRIMARY KEY    |
-| FK             | disciple_id    | Киберспортивная дисцплина | INTEGER  | PRIMARY KEY    |
-| FK             | tourn_org_id   | Организатор турниров      | INTEGER  | PRIMARY KEY    |
-|                | start_date     | Дата начала турнира       | DATE     | PRIMARY KEY    |
-|                | end_date       | Дата конца турнира        | DATE     | PRIMARY KEY    |
-|                | prize_pool     | Размер призовых           | INTEGER  | PRIMARY KEY    |
+| **Tournament** |                |                           |          |                       |
+|----------------|----------------|---------------------------|----------|-----------------------|
+| **PK/FK**      | **Name**       | **Description**           | **Type** | **Constraint**        |
+| PK             | tourn_id       | Турнир                    | INTEGER  | PRIMARY KEY           |
+| FK             | disciple_id    | Киберспортивная дисцплина | INTEGER  | FK ref Disciple       |
+| FK             | tourn_org_id   | Организатор турниров      | INTEGER  | FK ref tourn_org      |
+|                | start_date     | Дата начала турнира       | DATE     | NOT NULL              |
+|                | end_date       | Дата конца турнира        | DATE     | NOT NULL              |
+|                | prize_pool     | Размер призовых           | INTEGER  | prize_pool > 0        |
 
 
-| **Tourn_org** |                |                               |          |                |
-|---------------|----------------|-------------------------------|----------|----------------|
-| **PK/FK**     | **Name**       | **Description**               | **Type** | **Constraint** |
-| PK            | tourn_org_id   | Организатор турнира           | INTEGER  | PRIMARY KEY    |
-|               | num_of_tourn   | число организованных турниров | INTEGER  | PRIMARY KEY    |
-|               | rating         | рейтинг организации           | REAL     | PRIMARY KEY    |
-|               | owner          | Владелец организации          | STRING   | PRIMARY KEY    |
+| **Tourn_org** |                |                               |          |                  |
+|---------------|----------------|-------------------------------|----------|------------------|
+| **PK/FK**     | **Name**       | **Description**               | **Type** | **Constraint**   |
+| PK            | tourn_org_id   | Организатор турнира           | INTEGER  | PRIMARY KEY      |
+|               | num_of_tourn   | число организованных турниров | INTEGER  | num_of_tourn > 0 |
+|               | rating         | рейтинг турниров              | REAL     | 0 < rating < 5   |
+|               | owner          | Владелец организации          | STRING   |                  |
 
 
 
 | **Tournament X Team** |                 |                           |          |                |
 |-----------------------|-----------------|---------------------------|----------|----------------|
 | **PK/FK**             | **Name**        | **Description**           | **Type** | **Constraint** |
-| PK FK                 | tourn_id        | Турнир                    | INTEGER  | PRIMARY KEY    |
-| PK FK                 | team_id         | Киберспортивная команда   | INTEGER  | PRIMARY KEY    |
+| PK FK                 | tourn_id        | Турнир                    | INTEGER  | FK ref tourn   |
+| PK FK                 | team_id         | Киберспортивная команда   | INTEGER  | FK ref team    |
 
 
-| **Team**      |                |                           |          |                |
-|---------------|----------------|---------------------------|----------|----------------|
-| **PK/FK**     | **Name**       | **Description**           | **Type** | **Constraint** |
-| PK            | sport_org_id   | Спортивная организация    | INTEGER  | PRIMARY KEY    |
+| **Team**      |                |                           |          |                  |
+|---------------|----------------|---------------------------|----------|------------------|
+| **PK/FK**     | **Name**       | **Description**           | **Type** | **Constraint**   |
+| PK            | team_id        | Киберспортивная команда   | INTEGER  | PRIMARY KEY      |
+| FK            | sport_org_id   | Спортивная организация    | INTEGER  | FK ref sport_org |
+|               | team_rating    | Соревновательный рейтинг  | INTEGER  | team_rating > 0  |
+|               | total_wins     | Число побед в турнирах    | INTEGER  | total_wins > 0   |
+|               | creation_date  | Дата создания команды     | DATE     |                  |
 
 
-
-
+| **Player**    |                |                           |          |                 |
+|---------------|----------------|---------------------------|----------|-----------------|
+| **PK/FK**     | **Name**       | **Description**           | **Type** | **Constraint**  |
+| PK            | player_id      | Игрок                     | INTEGER  | PRIMARY KEY     |
+| FK            | disciple_id    | Киберспортивная дисцплина | INTEGER  | FK ref disciple |
+| FK            | team_id        | Команда                   | INTEGER  | FK ref team     |
+|               | player_name    | Имя игрока                | STRING   | NOT NULL        |
+|               | player_surname | Фамилия игрока            | STRING   | NOT NULL        |
+|               | player_age     | Возраст игрока            | INTEGER  | player_age > 0  |
 
 
