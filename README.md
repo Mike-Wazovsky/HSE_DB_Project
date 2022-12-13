@@ -76,6 +76,7 @@
 |               | team_rating    | Соревновательный рейтинг  | INTEGER  | team_rating > 0  |
 |               | total_wins     | Число побед в турнирах    | INTEGER  | total_wins > 0   |
 |               | creation_date  | Дата создания команды     | DATE     |                  |
+| <span style="color:red">PK</span>            | version_id     | Версия                    | INTEGER  | version_id > 0   |
 
 
 | **Player**    |                |                           |          |                 |
