@@ -77,6 +77,7 @@
 |               | total_wins     | Число побед в турнирах    | INTEGER  | total_wins > 0   |
 |               | creation_date  | Дата создания команды     | DATE     |                  |
 | PK            | version_id     | Версия                    | INTEGER  | version_id > 0   |
+
 <span style="color:red">Изменение тут ^</span>
 
 | **Player**    |                |                           |          |                 |
