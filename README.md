@@ -76,8 +76,8 @@
 |               | team_rating         | Соревновательный рейтинг              | INTEGER  | team_rating > 0  |
 |               | total_wins          | Число побед в турнирах                | INTEGER  | total_wins > 0   |
 |               | creation_date       | Дата создания команды                 | DATE     |                  |
-|               | valid_from_dttm     | дата появления записи                 | DATE     |                  |
-|               | valid_to_dttm       | дата появления следующей после записи | DATE     |                  |
+|               | valid_from_dttm     | дата появления записи                 | DATE     | NOT NULL         |
+|               | valid_to_dttm       | дата появления следующей после записи | DATE     | NOT NULL         |
 
 <span style="color:red">Изменение тут ^</span>
 
