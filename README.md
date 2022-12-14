@@ -68,15 +68,16 @@
 | PK FK                 | team_id         | Киберспортивная команда   | INTEGER  | FK ref team    |
 
 
-| **Team**      |                |                           |          |                  |
-|---------------|----------------|---------------------------|----------|------------------|
-| **PK/FK**     | **Name**       | **Description**           | **Type** | **Constraint**   |
-| PK            | team_id        | Киберспортивная команда   | INTEGER  | PRIMARY KEY      |
-| FK            | sport_org_id   | Спортивная организация    | INTEGER  | FK ref sport_org |
-|               | team_rating    | Соревновательный рейтинг  | INTEGER  | team_rating > 0  |
-|               | total_wins     | Число побед в турнирах    | INTEGER  | total_wins > 0   |
-|               | creation_date  | Дата создания команды     | DATE     |                  |
-| PK            | version_id     | Версия                    | INTEGER  | version_id > 0   |
+| **Team**      |                     |                                       |          |                  |
+|---------------|---------------------|---------------------------------------|----------|------------------|
+| **PK/FK**     | **Name**            | **Description**                       | **Type** | **Constraint**   |
+| PK            | team_id             | Киберспортивная команда               | INTEGER  | PRIMARY KEY      |
+| FK            | sport_org_id        | Спортивная организация                | INTEGER  | FK ref sport_org |
+|               | team_rating         | Соревновательный рейтинг              | INTEGER  | team_rating > 0  |
+|               | total_wins          | Число побед в турнирах                | INTEGER  | total_wins > 0   |
+|               | creation_date       | Дата создания команды                 | DATE     |                  |
+|               | valid_from_dttm     | дата появления записи                 | DATE     |                  |
+|               | valid_to_dttm       | дата появления следующей после записи | DATE     |                  |
 
 <span style="color:red">Изменение тут ^</span>
 
